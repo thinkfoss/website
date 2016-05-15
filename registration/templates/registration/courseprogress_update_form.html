@@ -1,0 +1,74 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% load register_extras %}
+{% block body %}
+<div class="container">
+  {% block navbar_mentors %}
+  {% include 'static/navigation_mentor.html' %}
+  {% endblock navbar_mentors %}
+            <div class='col-md-8'>
+                <br>
+                <form class="form-horizontal well" id="registerForm" method="POST"
+            	    enctype="multipart/form-data" action="">
+            	    <fieldset>
+            	        {% csrf_token %} {% load tz %}
+            	        {% for field in form.visible_fields %}
+            	        <div id="div_{{ field.html_name }}"
+            	            class="form-group{% if field.errors %} has-error{% endif%}">
+            	            <label class="col-sm-4 control-label" for="{{ field.id_for_label }}">
+            	                {{ field.label }}
+            	            </label>
+            				<div class="col-md-6 cnt-inpt">
+            					{{ field|addcss:"form-control" }}
+            					<div class="text-muted pull-right">
+            	                    <small>{{ field.help_text }}</small>
+            	                </div> <!-- form-group -->
+            	                <span class="help-block">
+            	                    {% for error in field.errors %} {{error }} {% endfor %}
+            	                </span> <!-- help-block -->
+            	            </div> <!-- col-sm-4 -->
+
+
+            			</div>
+            			{% endfor %}
+            	        {% for hidden in user_form.hidden_fields %} {{ hidden }} {% endfor %}
+
+            					<div class="form-group">
+            								 <div class="col-sm-offset-5">
+            										 <button type="submit" class="btn btn-primary">Submit</button>
+
+            								 </div> <!-- col-sm-offset-6 -->
+            						 </div> <!-- form-group -->
+
+            					 </fieldset>
+            				</form>
+            </div>
+
+            <div class='col-md-4'>
+                <h1 class="section-title"> Update a Module</h1>
+                <p class='intro'> Great! Adding in course modules can increase visibility for your course, and make your request authentic.<br><br>
+                    Add a catchy title so that it attracts. <br><br>
+                <h2>TODO</h2>
+                <ul class='mentor-list'>
+                    <li>
+                        <span class='fa fa-check'></span>
+                        <strong>Add in course details</strong>
+                    </li>
+                    <li>
+                        <span class='fa fa-check'></span>
+                        <strong>Wait for confrimation email</strong>
+                    </li>
+                    <li>
+                        <span class='fa fa-check'></span>
+                        <strong>See your course being public</strong>
+                    </li>
+                    <li>
+                        <span class='fa fa-phone'></span>
+                        <strong>Stuck ? Contact one of us</strong>
+                    </li>
+
+                </ul><br>
+            </div>
+
+</div>
+{% endblock body %}

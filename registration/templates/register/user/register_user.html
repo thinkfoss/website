@@ -1,0 +1,92 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% load register_extras %}
+{% block body %}
+ <div class="container">
+	 	<div class="col-sm-6 col-md-4 col-md-offset-4">
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	            <h2 style="text-align: center">Sign Up</h2>
+	        </div> <!-- panel-heading -->
+	        <div class="panel-body">
+	            <form role="form" action="{% url 'register_user' %}" method="POST">
+	            {% csrf_token %}
+					<fieldset>
+						<div class="row" style="text-align: center">
+	                        <div class="center-block profile-img">
+	                            <span class="fa-stack fa-4x">
+	                                <i class="fa fa-circle fa-stack-2x"></i>
+	                                <i class="fa fa-user-plus fa-stack-1x" style="color:#eee;"></i>
+	                            </span>
+	                        </div> <!-- center-block -->
+	                    </div> <!-- row -->
+							{% csrf_token %} {% load tz %}
+								  <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-at"></i>
+                                    </span>
+                                    <input class="form-control" placeholder='Email address' id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" type="email" required>
+                                </div> <!-- input-group-addon -->
+								  </div>
+							  <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                    <input class="form-control" placeholder='Username' id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" type="text" required>
+                                </div> <!-- input-group-addon -->
+								  </div>
+								  <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-expeditedssl"></i>
+                                    </span>
+                                    <input class="form-control" placeholder='Password' id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" type="password" required>
+                                </div> <!-- input-group-addon -->
+								  </div>
+							  <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-expeditedssl"></i>
+                                    </span>
+                                    <input class="form-control" placeholder='Password (again)' id="{{ form.repass.id_for_label }}" name="{{ form.repass.html_name }}" type="password" required>
+                                </div> <!-- input-group-addon -->
+								  </div>
+
+							{% for hidden in user_form.hidden_fields %} {{ hidden }} {% endfor %}
+							  {% if form.errors %}
+	                            <div class="alert alert-danger">
+	                                <i class="fa fa-warning"></i> "There was some problem with your input. Please try again."
+	                            </div> <!-- alert alert-danger -->
+	                            {% endif %}
+							  <div class="form-group">
+	                                <button id="signupbutton" type="submit" class="btn btn-lg btn-primary btn-block"  data-loading-text="Signing Up..." autocomplete="off" >Sign Up</button>
+	                            </div> <!-- form-group -->
+					 </fieldset>
+	            </form>
+	        </div> <!-- panel-body -->
+	        <div class="panel-footer" style="text-align: center;">
+	            <div class="password-reset-link">
+	                <a href="{% url 'password_reset' %}">Lost Password ?</a> or login via
+	            </div><br>
+				         <p>
+                            <a href="/accounts/google/login"> <button type='button' class="btn btn-danger"><i class="fa fa-google-plus"> Google </i> </button></a>
+                            <a href="/accounts/github/login"> <button type='button'  id="github_button" class='btn tf-btn' style="background-color:rgb(80,80,80) "><i class="fa fa-github"> Github</i> </button></a>
+                          </p>
+	        </div> <!-- panel footer -->
+	    </div> <!-- panel -->
+	</div> <!-- col-sm-6 col-md-4 col-md-offset-4 -->
+					</div>
+<script>
+  $('#signupbutton').on('click', function () {
+			$(this).button('loading').delay(1000).queue(function() {
+			$(this).button('reset');
+			$(this).dequeue();
+		});
+  });
+</script>
+{% include 'static/login-model.html' %}
+
+
+{% endblock body %}

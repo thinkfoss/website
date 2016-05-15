@@ -1,0 +1,18 @@
+{% block subject %}
+You have added a new course \m/
+{% endblock %}
+
+{% block html %}
+Hello {{user.user_first_name}},
+
+Congrats on adding in a new course "{{course}}". The admin team is notified about the same, and will be reviewing
+your course for quality purpose. To make sure your course get accepted, kindly add in more modules
+(https://www.thinkfoss.com/register/user/portal/mentoring/) and update your profile at (http://www.thinkfoss.com/register/user/profile/).
+
+You will be notified over an email when your course is approved and is made public for visitors.
+
+In case of any trouble, feel free to contact the admin of ThinkFOSS by replying to this email.
+
+Happy Hacking,
+ThinkFOSS Team
+{% endblock %}

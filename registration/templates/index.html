@@ -1,0 +1,527 @@
+{% extends "static/base_home.html" %}
+{% load staticfiles %}
+{% block body %}
+
+<script type="text/javascript">
+    function showDiv() {
+        document.getElementById("contact_form").style.display='block';
+        document.getElementById("contact_button").style.display='none';
+        document.getElementById("contact_button_div").style.display='none';
+    }
+    /*!
+     * Create an array of word objects, each representing a word in the cloud
+     */
+    var word_array = [
+        {text: "Open Source", weight: 9, link: "https://opensource.com/resources/what-open-source"},
+        {text: "Python", weight: 7, html: {title: "I can haz any html attribute"}},
+        {text: "Programming", weight: 7},
+        {text: "Node JS", weight: 7, link: "https://nodejs.org/en/" },
+        {text: "Angular JS", weight: 7, link: "https://angularjs.org/"},
+        {text: "Design", weight: 6},
+        {text: "Develop", weight: 6},
+        {text: "Linux", weight: 8},
+        {text: "C/C++", weight: 7},
+        {text: "Bugs", weight: 6},
+        {text: "Fix", weight: 7},
+        {text: "Code", weight: 8},
+        {text: "Git", weight: 8},
+        {text: "Workflow", weight: 7},
+        {text: "PHP", weight: 7},
+        {text: "Django", weight: 7, link: "https://www.djangoproject.com/"},
+        {text: "Ruby", weight: 7},
+        {text: "Frameworks", weight: 7},
+        {text: "Android", weight: 8},
+        {text: "Kernel", weight: 7},
+        // ...as many words as you want
+    ];
+
+    $(function() {
+        // When DOM is ready, select the container element and call the jQCloud method.
+        $("#courses-cloud").jQCloud(word_array);
+    });
+
+</script>
+<!-- Home Page
+==========================================-->
+<div id="tf-home" >
+    <div class="overlay">
+        <div class ="col-md-6">
+            <div class="content" style="text-align:left; padding-left:15.5%;">
+                <p class="lead" style="color: white; padding-bottom: 40px; font-size: 40px; font-weight:350; padding-top:45%;">
+                    A developer team, <br>into <span style="font-weight:bold; font-size: 50px;">3 things</span></span>. </p>
+            </div>
+
+            <div style="padding-left:12%">
+                <nav class="cl-effect-2">
+                    <a  href="/#tf-task"><span data-hover="code" style="text-align:center">DEVELOP</span></a>
+                    <a href="http://wshop.thinkfoss.com" target="_blank"><span data-hover="train" style="text-align:center">WORKSHOPS</span></a>
+                    <a href="/#tf-mentor" ><span data-hover="grow" style="text-align:center">MENTOR</span></a>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Services Section
+==========================================-->
+<div id="tf-services" class="text-center" style="background-color: seashell">
+    <div class="overlay">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Take a look at <strong>our services</strong></h2>
+                <div class="line">
+                    <hr>
+                </div>
+                <div class="clearfix"></div>
+                <em>We do <b>3</b> things, as of now! \m/</em>
+            </div>
+            <div class="space"></div>
+            <div id="service" class="owl-carousel owl-theme" style="text-align:center">
+                <div class="service">
+                    <i class="fa fa-thumbs-up"></i>
+                    <h4><strong>Training</strong></h4>
+                    <p>Training in Open Source skills at School, University and Industry levels. Book a training ? <a href="#tf-contact">Drop</a> a message! </p>
+                </div>
+                <div class="service">
+                    <i class="fa fa-cogs"></i>
+                    <h4><strong>Applications</strong></h4>
+                    <p>Develop web and mobile applications for Individuals and Corporations at regular price. Get your <a href="#tf-task">solution</a> NOW!</p>
+                </div>
+
+                <div class="service">
+                    <i class="fa fa-group"></i>
+                    <h4><strong>Mentoring Portal</strong></h4>
+                    <p>A powerful <a href="{% url 'portal' %}">portal</a> where you get 1:1 mentoring on various topics from experts! <a href="#tf-mentor">Learn</a> how you can mentor!</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Courses Section
+==========================================-->
+<div id="tf-courses">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="section-title center" style="text-align: center">
+                    <h2><strong>Learn </strong>Like a Pro</h2>
+                    <div class="line">
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="jumbotron" style=" background-color: #818E96">
+                        <p class="intro">Your <span style="font-size: 30px" >STEPS</span> to
+                            <span style="font-size: 35px" >LEARNING</span> via our
+                            <span style="font-size: 35px" >1:1</span> mentors, is as simple as
+                        </p>
+
+                        <br><br>
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="Learning">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-primary">Browse <i class="fa fa-arrow-circle-right"></i> </button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">Enroll <i class="fa fa-arrow-circle-right"></i> </button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button"  class="btn btn-default disabled" >Repeat</button>
+                            </div>
+                        </div>
+
+                        <div style="bottom: 0; padding-top: 50px; text-align: center">
+                            <a href="{% url 'portal' %}" target="_blank"><button type="button" class="btn-new  btn-ghost" >
+                                All Courses <i class="fa fa-arrow-circle-right"></i> </button></a>
+                        </div>
+
+                        <br><br>
+                        <p><em> All courses will happen online via Hangouts/Skype/IRC,
+                            no payments are asked for FREE courses whatsoever. Your mentor is paid completely only after evaluating your feedback!</em></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="section-title center">
+                        <h2 style="text-align: center" > now<strong> LIVE</strong></h2>
+                    </div>
+                    <div class="row">
+                        {% for course in object_list %}
+                        <a href="{% url 'student_course_view' course.course_id course.course_name %}">
+                            <div class="col-md-4 " >
+                                <div class='panel panel-default'>
+                                    <div class='panel-heading'>
+                                        <div class='panel-title index_box' >
+                                            <h3 style="text-align:center">{{ course.course_name|truncatechars:35}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        <a href="{% url 'portal_mentoring'  %}">
+                            <div class="col-md-4 " >
+                                <div class='panel panel-info'>
+                                    <div class='panel-heading'>
+                                        <div class='panel-title index_box' >
+                                            <h3 style="text-align:center"><i class="fa fa-arrow-circle-right fa-2x"></i>  <br>Add your now</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="tf-mentor">
+    <div class="overlay" style="background-color: #818E96">
+        <div class="container" style="background-color: #818E96">
+            <div class="row">
+                <div class="section-title center" style="text-align: center">
+                    <h2>Be a <strong>Mentor</strong></h2>
+                    <div class="line">
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-top:3%"  >
+                    <div class="panel panel-body"  style="background-color: transparent;">
+                        <div id="courses-cloud" style="width: 100%; height: 300px; "></div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="jumbotron" style="color:black; background-color:white">
+                        <p class="intro">
+                            <span style="font-size: 35px" >MENTOR </span> a
+                            <span style="font-size: 35px">FOSS </span> topic
+                            <span style="font-size: 35px" >1:1</span> ?
+                        </p><br>
+
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="Learning">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-primary">Add course <i class="fa fa-arrow-circle-right"></i> </button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">Mentor <i class="fa fa-arrow-circle-right"></i> </button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button"  class="btn btn-default disabled" >Earn</button>
+                            </div>
+                        </div>
+
+                        <div style="bottom: 0; padding-top: 50px; text-align: center">
+                            <a href="{% url 'portal_mentoring' %}" target="_blank"><button type="button" class="btn-new  btn-white" >
+                                Add your Course <i class="fa fa-arrow-circle-right"></i></button></a>
+                        </div>
+
+                        <br><br>
+                        <p><em> Each course you add will go through a quality/background check before getting
+                            public on the ThinkFOSS portal. We might contact you for clarifications regarding the same.
+                            Please keep your profile updated!</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Testimonials Section
+==========================================-->
+<div id="tf-testimonials" class="text-center">
+    <div class="overlay">
+        <div class="container">
+            <div class="section-title center">
+                <h2><strong>Our clients’</strong> testimonials</h2>
+                <div class="line">
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div id="testimonial" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <blockquote>
+                                <p>I requested for an app - to be used on a tablet for obtaining sign ups during Amrita University's International tours.
+                                    My sincere thanks to ThinkFOSS for providing me with the app within two days of request. A simple, yet neat app was provided
+                                    with the basic necessary features. Got emails and answers to all questions within minutes. Keep up the great work ThinkFOSS!
+                                    Thanks a lot for your help and effort. Will keep you posted on the actual usage. Looking forward to extended support in case
+                                    of future issues/request for upgrade.</p>
+
+                                <p><strong>Sujatha</strong>, Co-ordinator, Amrita Center for International Programs.</p>
+                            </blockquote>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="tf-task">
+    <div class="overlay" style="background-color: #818E96;">
+        <div class="container" style="background-color: #818E96">
+            <div class="row">
+                <div class="col-md-6" style="padding-left:30px;">
+                    <div id="clients" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <a href="https://www.djangoproject.com/" target="_blank">
+                                <img src="{% static 'img/client/django.png' %}">
+                                <p class="intro"> <b>Python Django</a></b> </p>
+                            <hr> <p>The fast and furious MVC python Framework which can give you full
+                            control over your secure web-app!
+                        </p>
+                        </div>
+
+                        <div class="item">
+                            <a href="http://www.php.net/" target="_blank">
+                                <img src="{% static 'img/client/2000px-PHP-logo.svg.png' %}">
+                                <p class="intro"> <b>PHP</a></b> </p>
+                            <hr> <p>The mature language, which is trusted by millions around the globe,
+                            and can help us deploy over a teacup!
+                        </p>
+                        </div>
+
+                        <div class="item">
+                            <a href="https://www.android.com/" target="_blank">
+                                <img src="{% static 'img/client/android.png' %}">
+                                <p class="intro"> <b>Android</a></b> </p>
+                            <hr> <p>The trend in mobile market, and ThinkFOSS got its deverlopers at your
+                            disposal! Hit the next-gen market!
+                        </p>
+                        </div>
+
+                        <div class="item">
+                            <a href="https://www.openshift.com/" target="_blank">
+                                <img src="{% static 'img/client/1024px-OpenShift-LogoType.svg.png' %}">
+                                <p class="intro"> <b>Redhat Openshift</a></b> </p>
+                            <hr> <p>We heavily leverage on the free hosting provided by Redhat Openshift,
+                            and if you are in need of free hosting - create your request NOW!
+                        </p>
+                        </div>
+                        <div class="item">
+                            <a href="https://wordpress.com/" target="_blank">
+                                <img src="{% static 'img/client/wordpress.png' %}">
+                                <p class="intro"> <b>Wordpress</a></b> </p>
+                            <hr> <p>We can help you create, deploy your blog - and since it's Wordpress -
+                            maintaining will be a cakewalk!
+                        </p>
+                        </div>
+                        <div class="item">
+                            <a href="https://www.drupal.org/" target="_blank">
+                                <img src="{% static 'img/client/drupal-logo.png' %}">
+                                <p class="intro"> <b>Drupal</a></b> </p>
+                            <hr> <p>We can get your drupal application developed and hosted -
+                            Thanks to Openshift services!
+                        </p>
+                        </div>
+                        <div class="item">
+                            <a href="https://www.mediawiki.org/" target="_blank">
+                                <img src="{% static 'img/client/01.png' %}">
+                                <p class="intro"> <b>Mediawiki</a></b> </p>
+                            <hr> <p>In need of a wiki ? create a request NOW, and we can get your wiki
+                            hosted and running within $deadline!
+                        </p>
+                        </div>
+                        <div class="item">
+                            <a href="https://www.java.com/" target="_blank">
+                                <img src="{% static 'img/client/Java_Logo.png' %}">
+                                <p class="intro"> <b>Java</a></b> </p>
+                            <hr> <p> We develop applications in Java too! Make sure you have quoted your
+                            requirements well, so that development is easy!
+                        </p>
+                        </div>
+
+                    </div>
+                    <div class="section-title">
+                        <hr>
+                        <div class="clearfix"></div>
+                        <h4>Count on us</h4>
+                        <h2>Our <strong>Expertise</strong></h2>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6" style="padding-left:30px;">
+                    <div class="about-text">
+                        <div class="section-title">
+                            <h4>Submit your task</h4>
+                            <h2>Get your <strong>Solution</strong></h2>
+                            <hr>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p class="intro">We <span style="font-size: 30px" >Develop, Host and Deploy</span> applications, for <span style="font-size: 35px" >Mobile</span>
+                            and <span style="font-size: 35px" > Web</span></p>
+                        <br>
+                        <p class="intro"><span style="font-size: 35px" >CREATE</span> your request, and <span style="font-size: 35px" >We</span>
+                            will get back to you in <span style="font-size: 35px" > <24 </span> hours with a quote</p>
+                        <br>
+                        <br>
+                        <a href="{% url 'solution_create' %}" target="_blank"><button type="button" class="btn-new  btn-ghost" >
+                            Create Request <i class="fa fa-arrow-circle-right"></i></button></a>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Team Page
+==========================================-->
+<div id="tf-team" class="text-center">
+    <div class="overlay">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Meet <strong>our team</strong></h2>
+                <div class="line">
+                    <hr>
+                </div>
+            </div>
+
+            <div id="team" class="owl-carousel owl-theme row">
+                <div class="item">
+                    <div class="thumbnail">
+                        <img src="{% static 'img/team/Tony_Thomas.jpg' %}" alt="Tony Thomas" class="img-circle team-img">
+                        <div class="caption">
+                            <h3>Tony Thomas</h3>
+                            <p>CTO & Co-Founder</p>
+                            <p>Random Open Source guy and Wikimedian who thinks<br> FOSS is the best</p>
+                            <p>
+                                <a href="https://in.linkedin.com/in/tonythomas01" target="_blank"><i class="fa fa-linkedin"></i></a> &nbsp
+                                <a href="https://github.com/tonythomas01" target="_blank"><i class="fa fa-github"></i></a>  &nbsp
+                                <a href="http://blog.tttwrites.in" target="_blank"> <i class="fa fa-rss"></i></a> &nbsp
+                                <a href="https://twitter.com/01tonythomas" target="_blank"> <i class="fa fa-twitter"></i></a> &nbsp
+                                <a href="https://www.facebook.com/01tonythomas" target="_blank"> <i class="fa fa-facebook"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="thumbnail">
+                        <img src="{% static 'img/team/tinaj.jpg' %}" alt="Tina Johnson" class="img-circle team-img">
+                        <div class="caption">
+                            <h3>Tina Johnson</h3>
+                            <p>Co-Founder</p>
+                            <p>Google Summer of Code student with various commits to Mediawiki and Linux Kernel</p>
+                            <p>
+                                <a href="https://in.linkedin.com/pub/tina-johnson/70/22b/14b" target="_blank"><i class="fa fa-linkedin"></i></a> &nbsp
+                                <a href="https://github.com/tinajohnson" target="_blank"><i class="fa fa-github"></i></a>  &nbsp
+                                <a href="http://tinaj1234.wordpress.com" target="_blank"> <i class="fa fa-rss"></i></a> &nbsp
+                                <a href="https://twitter.com/tinajohnson1234" target="_blank"> <i class="fa fa-twitter"></i></a> &nbsp
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="thumbnail">
+                        <img src="{% static 'img/team/bithin_alangot.jpg' %}" alt="Bithin Alangot" class="img-circle team-img">
+                        <div class="caption">
+                            <h3>Bithin Alangot</h3>
+                            <p>Advisor</p>
+                            <p>PhD research scholar in Cyber Security Systems & Networks and <br> Mentor of <a href="http://foss.amrita.ac.in" target="_blank">FOSS@Amrita</a>  </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="thumbnail">
+                        <img src="{% static 'img/team/vipinp.jpg' %}" alt="Vipin Pavithran" class="img-circle team-img">
+                        <div class="caption">
+                            <h3>Vipin Pavithran</h3>
+                            <p>Chief Mentor, <a href="http://foss.amrita.ac.in" target="_blank">FOSS@Amrita</a></p>
+                            <p>Assistant professor at Amrita Cyber Security with 10+ years experience in Software Industry</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- About Us Page
+==========================================-->
+<div id="tf-contact" style="background-color: seashell">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" style="text-align:center;">
+                <!-- Place this tag in your head or just before your close body tag. -->
+                <!-- Place this tag in your head or just before your close body tag. -->
+                <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+                <!-- Place this tag where you want the widget to render. -->
+                <div class="g-page" data-width="383" data-href="//plus.google.com/u/0/102089872995784319229" data-rel="publisher"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="about-text">
+                    <div class="section-title">
+                        <h4>Contact us</h4>
+                        <h2>HOW We <strong>EVOLVED</strong></h2>
+                        <hr>
+                        <div class="clearfix"></div>
+                    </div>
+                    <p class="intro">When mentors and students of <a href="http://amritafoss.in" target="_blank">FOSS@Amrita</a> thought of scaling up their
+                        presence, starting a company was the best option. Today, we are a group of developers, programmers and designers with 250+
+                        upstream commits in less than 2 years, and still growing up. ThinkFOSS is an outcome of powerful minds and responsive
+                        Computers.
+                    </p>
+
+                    <br>
+                    <div id="contact_button_div" style="padding-top:50px">
+                        <button type="button" class="btn-new btn-white" onclick="showDiv()" id="contact_button">Contact Us</button>
+                        <a href="http://blog.thinkfoss.com" target="_blank"><button type="button" class="btn-new btn-white">Blog <i class="fa fa-newspaper-o"></i></button></a>
+                    </div>
+                    <div id="contact_form" style="display:none">
+                        <form class="form-horizontal" action="https://formspree.io/admin@thinkfoss.com" method="POST">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Your Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" required id="contact-name" placeholder="Your Name" name="name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Your Email</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" required id="contact-email" placeholder="Enter email" name="_replyto">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">Message</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" rows="3" name="message" required id="message" placeholder="Your message" ></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="Submit" class="btn-new btn-white" >Send</button>
+                                    <a href="http://blog.thinkfoss.com" target="_blank"><button type="button" class="btn-new btn-white">Blog <i class="fa fa-newspaper-o"></i></button></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'static/login-model.html' %}
+
+
+{% endblock body %}

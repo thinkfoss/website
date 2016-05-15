@@ -1,0 +1,77 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% load register_extras %}
+{% block body %}
+{% load bleach_tags %}
+<div class="container">
+  {% block navbar_mentors %}
+  {% include 'static/navigation_mentor.html' %}
+  {% endblock navbar_mentors %}
+            <div class='col-md-8' style="padding-top:15px">
+              <div class="table-responsive">
+      						<table class="table table-bordered table-striped table-hover">
+                    <col width="130">
+                    <col width="auto">
+                    <col width="100">
+                    <col width="80">
+      								{% if object_list %}
+      								<thead>
+      										<tr>
+      												<th>Module Name</th>
+      												<th>Module Description</th>
+      												<th>Duration ( hours )</th>
+                              <th>Action</th>
+      										</tr>
+      								</thead>
+      								<tbody>
+      								{% for module in object_list %}
+      								<tr>
+      										<td> {{ module.module_name }} </td>
+      										<td> {{ module.module_description | bleach }} </td>
+                          <td> {{ module.module_duration }} </td>
+      										<td style="width: 140px"> <a href="{% url 'course_edit_module' module.module_id %}"><i class="fa fa-pencil fa-pull-left"> Edit</i></a>
+      										</td>
+      								</tr>
+      								</tbody>
+      								{% endfor %}
+      								{% else %}
+      								<div class="alert alert-danger" style="text-align: center">
+      									 You havent added any modules for this course yet
+      								</div>
+
+      								{% endif%}
+      						</table>
+      				</div><!--table-responsive-->
+      				<div style="text-align:center">
+      				<a href="{% url 'course_add_module' course_id %}"><button type="submit" class="btn btn-primary">Add new module</button></a>
+      				</div>
+
+            </div>
+
+          <div class='col-md-4'>
+              <h1 class="section-title"> Course Modules</h1>
+              <p class='intro'> Great! Adding in course modules can increase visibility for your course, and make your request authentic<br><br>
+              <h3>Flow</h3>
+                <ul class='mentor-list'>
+                    <li>
+                        <span class='fa fa-check'></span>
+                        <strong>Add in your course</strong>
+                    </li>
+                    <li>
+                        {% if object_list %} <span class='fa fa-check'> {% else %}<span class='fa fa-times'> {% endif %} </span>
+                        <strong>Add in modules</strong>
+                    </li>
+                    <li>
+                        <span class='fa fa-times'></span>
+                        <strong>Wait for confirmation email</strong>
+                    </li>
+                    <li>
+                        <span class='fa fa-times'></span>
+                        <strong>Your course is public</strong>
+                    </li>
+
+                </ul><br>
+          </div>
+
+</div>
+{% endblock body %}

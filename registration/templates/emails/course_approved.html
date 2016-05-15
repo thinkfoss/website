@@ -1,0 +1,21 @@
+{% block subject %}
+Your course is accepted (y)
+{% endblock %}
+
+{% block html %}
+Hello {{user.user_first_name}},
+
+We are happy to notify you that your course "{{course}}" is approved by the ThinkFOSS team, and ready to accept
+prospective mentees.
+
+You can view your course listed at https://www.thinkfoss.com/register/user/portal/ and manage it via your
+mentor portal at https://www.thinkfoss.com/register/user/portal/mentoring/
+
+We will notify you on any enrollment to your course, and meanwhile, feel free to polish the course by adding in
+more modules.
+
+In case of any trouble, feel free to contact the admin of ThinkFOSS by replying to this email.
+
+Welcome to our mentors club,
+ThinkFOSS Team
+{% endblock %}

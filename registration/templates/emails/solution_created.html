@@ -1,0 +1,26 @@
+{% block subject %}
+We have got your solution request!
+{% endblock %}
+
+{% block html %}
+Hello There,
+
+We have recieved your solution request, and is processing the same as your read this email. This email is an acknowledgement for
+the same, and please keep this safely!
+
+Details of the solution requested are:
+
+Application name: {{ solution_name }}
+Platform : {{ solution_platform }}
+Contact Number : {{ solution_contact }}
+Deadline : {{ solution_deadline }}
+Budget : {{ solution_budget }}
+Description : {{ solution_description }}
+
+
+
+In case of any trouble, feel free to contact the admin of ThinkFOSS by replying to this email.
+
+Happy Hacking,
+ThinkFOSS Team
+{% endblock %}

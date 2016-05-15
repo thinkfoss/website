@@ -1,0 +1,15 @@
+{% block subject %}
+Congrats! Your checkout is succesfull!
+{% endblock %}
+
+{% block html %}
+Hello {{ user.user_first_name }},
+
+Congratulations on checking out the course: {{ item }}. We have notified your mentors regarding the same, and they will be in
+touch with you shortly. You can take a look at the course, and its modules at http://www.thinkfoss.com/register/user/portal/student/enrolled/
+
+In case of any trouble, feel free to contact the admin of ThinkFOSS by replying to this email.
+
+Happy Hacking,
+ThinkFOSS Team
+{% endblock %}

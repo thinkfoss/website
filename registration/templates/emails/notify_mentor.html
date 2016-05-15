@@ -1,0 +1,19 @@
+{% block subject %}
+A new user has enrolled to your course!
+{% endblock %}
+
+{% block html %}
+Hello {{mentor}},
+
+We are happy to notify you that a new user {{ user.user_first_name }}<{{user.email}}> has enrolled to your course {{item}}. This is a
+proud moment for the ThinkFOSS family and congratulations on the same.
+
+You can see the details of mentees enrolled to your course at https://www.thinkfoss.com/register/user/portal/mentoring/ and please make
+sure that you update the progress report regularly as you complete course modules.
+
+Payment will be transferred to your bank account, once the admin verifies this transaction!
+In case of any trouble, feel free to contact the admin of ThinkFOSS by replying to this email.
+
+Happy Hacking,
+ThinkFOSS Team
+{% endblock %}

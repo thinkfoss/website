@@ -1,0 +1,61 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% block body %}
+<div class="container-dash">
+	<div class="row">
+		{% block navbar_left %}
+		{% include 'static/navbar_left.html' %}
+		{% endblock navbar_left %}
+		<div class="col-md-10">
+			{% if object_list %}
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped table-hover table-condensed">
+					<col width="auto">
+					<col width="auto">
+					<col width="100">
+					<col width="100">
+					<thead>
+					<tr>
+						<th>Course Name</th>
+						<th>Mentor</th>
+						<th>Price</th>
+						<th>Action</th>
+					</tr>
+					</thead>
+					<tbody>
+					<form action="{% url 'checkout_order' %}" method="POST" id="cartForm"
+						  enctype="multipart/form-data">
+						<fieldset>
+							{% csrf_token %} {% load tz %}
+							{% for item in object_list %}
+
+							<tr>
+								<input type="hidden" name="order" value="{{ item.checkout_id }}"> </input>
+								<td> {{ item.course.get_course_name }} </td>
+								<td> {{ item.course.get_mentor.get_name }}</td>
+								<td> {{ item.course.get_course_fees }} </td>
+								<td>
+									<a href="{% url 'remove_from_cart' item.checkout_id %}" ><i class="fa fa-trash fa-pull-left"> </i> Remove</a>
+								</td>
+							</tr>
+					{% endfor %}
+							</tbody>
+					</fieldset>
+				</table>
+			</div><!--table-responsive-->
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-sm-2">
+				<button type="submit" class="btn btn-success btn-block">Checkout</button>
+			</div> <!-- col-sm-offset-6 -->
+		</div> <!-- form-group -->
+		</form>
+		</div>
+		{% else %}
+		<div class="alert alert-danger" style="text-align: center">
+			Hooray! You do not have any items in your cart
+		</div>
+		</div>
+	{% endif%}
+	</div>
+</div>
+{% endblock body %}

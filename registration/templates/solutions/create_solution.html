@@ -1,0 +1,80 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% load register_extras %}
+{% block body %}
+<script>
+$(document).ready(function() {
+    $('#id_solution_deadline').datepicker({
+      changeYear: true,
+      changeMonth: true,
+      changeYear: true,
+      showOtherMonths: true,
+      selectOtherMonths: true,
+			yearRange: "1940:2015"
+    });
+});
+</script>
+    <div class="overlay" id="solution_request">
+      <div class=" container">
+	       <div class="row">
+              <div class="col-md-6">
+          				<form class="form-horizontal well" id="registerForm" method="POST"
+          					enctype="multipart/form-data" action="{% url 'solution_create' %}">
+          					<fieldset>
+          							{% csrf_token %} {% load tz %}
+          							{% for field in form.visible_fields %}
+          							<div id="div_{{ field.html_name }}"
+          									class="form-group{% if field.errors %} has-error{% endif%}">
+          									<label class="col-sm-4 control-label" for="{{ field.id_for_label }}">
+          											{{ field.label }}
+          									</label>
+          						<div class="col-md-6 cnt-inpt">
+          							{{ field|addcss:"form-control" }}
+          							<div class="text-muted pull-right">
+          													<small>{{ field.help_text }}</small>
+          											</div> <!-- form-group -->
+          											<span class="help-block">
+          													{% for error in field.errors %} {{error }} {% endfor %}
+          											</span> <!-- help-block -->
+          									</div> <!-- col-sm-4 -->
+          					</div>
+          					{% endfor %}
+          							{% for hidden in user_form.hidden_fields %} {{ hidden }} {% endfor %}
+
+          						<div class="form-group" style="text-align:center">
+          											 <a href="#tf-courses">
+														 <button type="submit" data-loading-text="Creating request..."
+																 class="btn btn-success solution_buttons">Create Request <i class="fa fa-angle-double-right"></i> </button></a>
+          							 </div> <!-- form-group -->
+          					 </fieldset>
+          				 </form>
+          			</div>
+
+					<div class="col-md-6">
+					  <div class="content" style="padding-top: 35%;text-align:right" >
+						<p class="lead" style="	 padding-bottom: 40px; font-size: 35px; font-weight:350;">
+						  <i class="fa fa-cog fa-spin"></i> We will get back to you in <24 hours! Its a <i>promise*</i></p>
+						  <p class="lead" style=" padding-bottom: 40px; font-size: 20px; font-weight:200;">
+							* promises might vary a <i>bit</i> during holidays and earthquakes :)
+						  </p>
+
+						  <a href="{% url 'portal' %}" class="btn btn-primary btn-lg solution_buttons" data-loading-text="Taking you inside..." >See whats inside <i class="fa fa-angle-double-right"></i></a>
+					  </div>
+					</div>
+
+
+            </div>
+          </div>
+  </div>
+
+<script>
+  $('.solution_buttons').on('click', function () {
+			$(this).button('loading').delay(1000).queue(function() {
+			$(this).button('reset');
+			$(this).dequeue();
+		});
+  });
+</script>
+
+{% include 'static/login-model.html' %}
+{% endblock body %}

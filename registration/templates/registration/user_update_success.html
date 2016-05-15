@@ -1,0 +1,21 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+
+
+{% block body %}
+<div class="container" style="padding-top: 8%">
+    <div class="row">
+        {% block navbar_left %}
+        {% include 'static/navbar_left.html' %}
+        {% endblock navbar_left %}
+        <div class="col-md-8">
+		<h2 style="text-align: center; padding-top:10%;">Updated Successfully!</h2> <br>
+		<div class="row">
+		<div class="alert alert-success" style="text-align:center">
+		You have successfully updated your profile. Thank You
+		</div><!--alert alert-success-->
+	</div>
+			</div>
+		</div>
+	</div>
+{% endblock body %}

@@ -1,0 +1,139 @@
+{% extends "static/base_course.html" %}
+{% load staticfiles %}
+{% block course_headers %}
+{% load bleach_tags %}
+
+<title>{{ course.course_name }} - ThinkFOSS</title>
+<meta name="msvalidate.01" content="AACA4869B9C746F7F151D39BF5D19CB2" />
+<meta name="description" content="{{course.course_bio}}">
+<meta name="keywords" content="thinkfoss, fossatamrita, training, open source, open source solutions">
+<meta name="author" content="www.thinkfoss.com">
+{% endblock course_headers %}
+
+{% block body %}
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "1b8220bd-2bf0-4123-82df-6335a645d693", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+<div class="container-dash">
+  <div class="row">
+    {% block navbar_left %}
+    {% include 'static/navbar_left.html' %}
+    {% endblock navbar_left %}
+
+    <div class="col-md-7">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title" style="text-align:center">{{ course.course_name }}</h3>
+          </div>
+          <div class="panel-body">
+            {{course.course_bio | bleach}}<br> <br>
+            <h3>Modules</h3>
+            {% if modules %}
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover table-condensed">
+                <col width="auto">
+                <col width="auto">
+                <col width="100">
+                <thead>
+                <tr>
+                  <td><strong>Name</strong></td>
+                  <td><strong>Description</strong></td>
+                  <td><strong>Duration</strong></td>
+                </tr>
+                {% for module in modules %}
+                <tbody>
+                <tr>
+                  <td> {{ module.module_name}}</td>
+                  <td> {{ module.module_description | bleach}}</td>
+                  <td> {{ module.module_duration}} hours</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% else %}
+            No Modules Found for this course. Please contact the admins!
+            {% endif %}
+
+            <h3>Details</h3>
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover table-condensed">
+                <tbody>
+                <tr>
+                  <td><strong>Language</strong></td><td> {{ course.course_language }} </td>
+                </tr>
+                <tr>
+                  <td><strong>Difficulty</strong></td><td> {{ course.course_difficulty }} </td>
+                </tr>
+                <tr>
+                  <td><strong>Fees</strong></td><td><i class="fa fa-inr"></i> {{ course.course_fees }} /-</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel-footer">
+            {% if not user.is_anonymous %}
+            {% if in_cart %}
+            <a href="{% url 'cart_view' %}"  class="btn btn-success"><i class="fa fa-star"> </i> In Cart </a>
+            {% elif enrolled %}
+            <button class="btn btn-default" disabled="disabled"><i class="fa fa-thumbs-up"> </i> Enrolled</button>
+            {% else %}
+            <a href="{% url 'add_to_cart' course.course_id %}" id="add_to_course_button" class="btn btn-primary"
+               data-loading-text="Adding to cart..">Add to cart <i class="fa fa-arrow-circle-right"></i></a>
+            {% endif %}
+            {% else %}
+            <a data-toggle="modal" data-target="#login-modal" class="btn btn-primary"><i class="fa fa-user"> </i> Login </a>
+            {% endif %}
+            <div style="float:right">
+
+        <span class='st__large' displayText=''></span>
+        <span class='st_facebook_large' displayText='Facebook'></span>
+        <span class='st_twitter_large' displayText='Tweet'></span>
+        <span class='st_linkedin_large' displayText='LinkedIn'></span>
+        <span class='st_pinterest_large' displayText='Pinterest'></span>
+        <span class='st_email_large' displayText='Email'></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="panel-title" style="text-align:center" >
+              <i class="fa fa-user fa-4x"></i> <br>
+              <h3>{{ mentor.user_first_name}} {{ mentor.user_last_name}}</h3>
+            </div>
+          </div>
+          <div class="panel-body">
+            {% if mentor.user_bio %}
+            {{ mentor.user_bio }}
+            {% else %}
+            The mentor do not have a text here to show to you!
+            {%endif%}
+          </div>
+          <div class="panel-footer">
+            <a href="{% url 'mentor_profile_view' mentor.get_user_id %}" target="_blank" class="btn btn-default" role="button">Full Profile</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+    </div>
+  </div>
+  <script type="text/javascript">stLight.options({publisher: "1b8220bd-2bf0-4123-82df-6335a645d693", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+  <script>
+var options={ "publisher": "1b8220bd-2bf0-4123-82df-6335a645d693", "position": "left", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "twitter", "linkedin", "pinterest", "email", "sharethis"]}};
+var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+  $('#add_to_course_button').on('click', function () {
+			$(this).button('loading').delay(1000).queue(function() {
+			$(this).button('reset');
+			$(this).dequeue();
+		});
+  });
+
+</script>
+  {% include 'static/login-model.html' %}
+  <!--//contact-->
+  {% endblock body %}

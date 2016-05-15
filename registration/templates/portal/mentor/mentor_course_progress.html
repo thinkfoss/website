@@ -1,0 +1,76 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% load register_extras %}
+{% block body %}
+<script>
+$("[name='my-checkbox']").bootstrapSwitch();
+</script>
+<div class="container">
+  {% block navbar_mentors %}
+  {% include 'static/navigation_mentor.html' %}
+  {% endblock navbar_mentors %}
+            <div class='col-md-8' style="padding-top:15px">
+              <div class="table-responsive">
+      						<table class="table table-bordered table-striped table-hover">
+                    <col width="130">
+                    <col width="auto">
+                    <col width="100">
+                    <col width="100">
+      								{% if object_list %}
+      								<thead>
+      										<tr>
+      												<th>Module Name</th>
+      												<th>Module Description</th>
+      												<th>Duration</th>
+                              <th>Progress</th>
+      										</tr>
+      								</thead>
+      								<tbody>
+      								{% for module in object_list %}
+      								<tr>
+      										<td> {{ module.module_name }} </td>
+      										<td> {{ module.module_description }} </td>
+                          <td> {{ module.module_duration }} </td>
+                          <td> <a href="{% url 'update_module_progress' enrollment_id module.module_id %}"> Track </a></td>
+      										</td>
+      								</tr>
+      								</tbody>
+      								{% endfor %}
+      								{% else %}
+      								<div class="alert alert-danger" style="text-align: center">
+      									 You havent added any modules for this course yet
+      								</div>
+
+      								{% endif%}
+      						</table>
+      				</div><!--table-responsive-->
+
+            </div>
+
+          <div class='col-md-4'>
+              <h1 class="section-title"> Progress Tracker</h1>
+              <p class='intro'> Great! Adding in course modules can increase visibility for your course, and make your request authentic<br><br>
+              <h2>TODO</h2>
+              <ul class='mentor-list'>
+                  <li>
+                      <span class='fa fa-check'></span>
+                      <strong>Add in course details</strong>
+                  </li>
+                  <li>
+                      <span class='fa fa-check'></span>
+                      <strong>Wait for confrimation email</strong>
+                  </li>
+                  <li>
+                      <span class='fa fa-check'></span>
+                      <strong>See your course being public</strong>
+                  </li>
+                  <li>
+                      <span class='fa fa-phone'></span>
+                      <strong>Stuck ? Contact one of us</strong>
+                  </li>
+
+              </ul><br>
+          </div>
+
+</div>
+{% endblock body %}

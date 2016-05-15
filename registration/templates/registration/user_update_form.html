@@ -1,0 +1,60 @@
+{% extends "static/base.html" %}
+
+{% load staticfiles %}
+{% load register_extras %}
+{% block body %}
+<script>
+$(document).ready(function() {
+    $('#id_user_dob').datepicker({
+      changeYear: true,
+      changeMonth: true,
+      showOtherMonths: true,
+      selectOtherMonths: true,
+      yearRange: "1940:2015"
+    });
+});
+</script>
+<div class="container-dash">
+    <div class="row">
+        {% block navbar_left %}
+        {% include 'static/navbar_left.html' %}
+        {% endblock navbar_left %}
+        <div class="col-md-4 col-md-offset-2">
+            <div class="row">
+                <form class="form" id="registerForm" method="POST"
+                      enctype="multipart/form-data" action="{% url 'user_profile_update' %}">
+                    <fieldset>
+                        {% csrf_token %} {% load tz %}
+                        {% for field in form.visible_fields %}
+                        <div id="div_{{ field.html_name }}"
+                             class="form-group{% if field.errors %} has-error{% endif%}">
+                            <label class="col-sm-4 control-label" for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                            <div class="col-md-8 cnt-inpt">
+                                {{ field|addcss:"form-control" }}
+                                <div class="text-muted pull-right">
+                                    <small>{{ field.help_text }}</small>
+                                </div> <!-- form-group -->
+                        <span class="help-block">
+                            {% for error in field.errors %} {{error }} {% endfor %}
+                        </span> <!-- help-block -->
+                            </div> <!-- col-sm-4 -->
+
+
+                        </div>
+                        {% endfor %}
+                        {% for hidden in user_form.hidden_fields %} {{ hidden }} {% endfor %}
+
+                        <div class="form-group" style="padding-left: 35%;">
+                            <button type="submit" class="btn btn-success" >Update Profile <i class="fa fa-arrow-circle-right"></i> </button>
+                        </div> <!-- form-group -->
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}

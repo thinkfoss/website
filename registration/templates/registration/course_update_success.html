@@ -1,0 +1,18 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% block body %}
+
+<div class="container">
+  {% block navbar_mentors %}
+  {% include 'static/navigation_mentor.html' %}
+  {% endblock navbar_mentors %}
+    <div style="padding-top: 15px;">
+    <h1 style="text-align: center">You have updated your course</h1> <br>
+    </div><!--page-header-->
+    <div class="row">
+        <div class="alert alert-success" style="text-align: center">
+            Your have updated the course. Please wait for confirmation from the admins
+        </div><!--alert alert-success-->
+    </div><!--row-->
+    </div>
+{% endblock body %}

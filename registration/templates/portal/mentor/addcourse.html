@@ -1,0 +1,75 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% load register_extras %}
+{% block body %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<div class="container-dash">
+    <div class="row">
+        {% block navbar_left %}
+        {% include 'static/navbar_left.html' %}
+        {% endblock navbar_left %}
+        <div class="col-md-8">
+                <form class="form-horizontal well" id="registerForm" method="POST"
+            	    enctype="multipart/form-data" action="{% url 'mentor_addcourse' %}">
+            	    <fieldset>
+            	        {% csrf_token %} {% load tz %}
+            	        {% for field in form.visible_fields %}
+            	        <div id="div_{{ field.html_name }}"
+            	            class="form-group{% if field.errors %} has-error{% endif%}">
+            	            <label class="col-sm-2 control-label" for="{{ field.id_for_label }}">
+            	                {{ field.label }}
+            	            </label>
+            				<div class="col-md-8 cnt-inpt">
+            					{{ field|addcss:"form-control" }}
+            					<div class="text-muted pull-right">
+            	                    <small>{{ field.help_text }}</small>
+            	                </div> <!-- form-group -->
+            	                <span class="help-block">
+            	                    {% for error in field.errors %} {{error }} {% endfor %}
+            	                </span> <!-- help-block -->
+            	            </div> <!-- col-sm-4 -->
+
+            			</div>
+            			{% endfor %}
+            	        {% for hidden in user_form.hidden_fields %} {{ hidden }} {% endfor %}
+
+            					<div class="form-group">
+            								 <div class="col-sm-offset-5">
+            										 <button type="submit" class="btn btn-primary">Add a course</button>
+            								 </div> <!-- col-sm-offset-6 -->
+            						 </div> <!-- form-group -->
+
+            					 </fieldset>
+            				</form>
+
+            </div>
+
+            <div class='col-md-2'>
+                <p class='intro'> Great! Add in the details of your new course, and we will make it available for the public
+                    after our review process. Make sure you give
+                    a catchy title so that it attracts. <br><br>
+                <h3>Flow</h3>
+                <ul class='mentor-list'>
+                    <li>
+                        <span class='fa fa-check'></span>
+                        <strong>Add in your course</strong>
+                    </li>
+                    <li>
+                        <span class='fa fa-times'></span>
+                        <strong>Add in modules</strong>
+                    </li>
+                    <li>
+                        <span class='fa fa-times'></span>
+                        <strong>Wait for confirmation email</strong>
+                    </li>
+                    <li>
+                        <span class='fa fa-times'></span>
+                        <strong>Your course is public</strong>
+                    </li>
+
+                </ul><br>
+            </div>
+</div>
+    </div>
+{% endblock body %}

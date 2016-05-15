@@ -1,0 +1,39 @@
+@media (max-width: 768px){
+  .content {
+	padding: 10% 0 0;
+	}
+}
+
+@media (max-width: 700px){
+  #tf-menu.navbar-default {
+    border-color: rgba(41, 109, 212, 0.01);
+  	}
+}
+@media (max-width: 603px){
+#tf-menu.navbar-default {
+	border-color: rgba(41, 109, 212, 0.01);
+	}
+#tf-works li.pull-right, #tf-works li.pull-left {
+    margin-top: 10px;
+    float: none !important;
+    text-align: center;
+    display: block;
+}
+label{
+    float: none !important
+}
+.pull-left.fnav,
+.pull-right.fnav {
+    float: none !important;
+    text-align: center;
+}
+
+.hover-bg .hover-text {
+    padding: 12% 10%;
+}
+}
+@media (max-width: 360px){
+.hover-bg .hover-text {
+    padding: 22% 10%;
+}
+}

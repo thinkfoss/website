@@ -1,0 +1,18 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% block body %}
+
+<div class="container">
+  {% block navbar_mentors %}
+  {% include 'static/navigation_mentor.html' %}
+  {% endblock navbar_mentors %}
+    <div style="padding-top: 30px;">
+    <h2 style="text-align: center">You have added a new module!</h2> <br>
+    </div><!--page-header-->
+    <div class="row">
+        <div class="alert alert-success" style="text-align: center">
+            Your have succesfully added a new module.
+        </div><!--alert alert-success-->
+    </div><!--row-->
+    </div>
+{% endblock body %}

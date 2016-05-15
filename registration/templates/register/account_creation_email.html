@@ -1,0 +1,30 @@
+{% autoescape off %}
+Hello,
+
+Greetings from the ThinKFOSS team. We are glad to let you know that we have upgraded
+our website to something fast and secure at https://www.thinkfoss.com/. It was an
+honour to listen to all your feedbacks, and re-design the same during this holiday
+season.
+
+Your account has been imported from the previous database, and you need to create a
+new paswsword for it by clicking on the below link.
+{% block reset_link %}
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+{% endblock %}
+Your username, is your registered email address: {{ user.get_username }}
+
+Few updates in the latest release of https://www.thinkfoss.com:
+
+  * Mentors can add modules to their courses and track progress
+  * Students get to see a detailed mentor profile with past history and courses listed
+  * Free courses are highlighted and doesn't require a checkout
+  * Courses are shareable via social media and more relevant emails
+  * Shifted to HTTPS, and the application is now powered by Python-Django
+
+Once you have your password, Update your profile via https://www.thinkfoss.com/register/user/profile/edit/
+If you had some courses in the previous website ( old.thinkfoss.com ), please port them manually
+and add modules!
+
+Warm holiday season wishes,
+The Admin team
+{% endautoescape %}

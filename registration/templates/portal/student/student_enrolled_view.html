@@ -1,0 +1,50 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% block body %}
+
+<div class="container-dash">
+  <div class="row">
+    {% block navbar_left %}
+    {% include 'static/navbar_left.html' %}
+    {% endblock navbar_left %}
+    <div class="col-md-10">
+    <div class="row">
+        {% if object_list %}
+          {% for course in object_list %}
+            <div class="col-md-4">
+            <div class="panel panel-default panel-success">
+            <div class="panel-heading" style="text-align:center">
+              <h3 class="panel-title">
+                {{ course.course_name }}
+              </h3>
+            </div>
+            <div class="panel-body" id="course-panel">
+              {{ course.course_bio }}
+              <br>
+            </div>
+            <div class="panel-footer">
+                   <p><a href="{% url 'student_course_view' course.course_id course.course_name %}" class="btn btn-primary" role="button">Details</a>
+                    <a href="#" target="_blank" class="btn btn-default" role="button">Mentor</a>
+                    <span style="float:right">
+                      <i class="fa fa-inr">{{ course.course_fees }}</i>
+                    </span>
+                    </p>
+             </div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+        <div class="alert alert-danger" style="text-align: center">
+            You havent enrolled to anything yet :(. Do checkout something!
+
+        </div><!--alert alert-success-->
+        <div style="text-align:center">
+        <i class="fa fa-thumbs-down fa-4x" style="font-size:300px;"></i>
+            </div>
+        {% endif %}
+    </div><!--row-->
+    </div>
+      </div>
+    </div>
+
+{% endblock body %}

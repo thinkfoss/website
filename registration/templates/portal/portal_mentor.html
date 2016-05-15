@@ -1,0 +1,65 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% block body %}
+{% load bleach_tags %}
+<div class="container-dash">
+    <div class="row">
+        {% block navbar_left %}
+        {% include 'static/navbar_left.html' %}
+        {% endblock navbar_left %}
+        <div class="col-md-10">
+            <div class="row">
+                {% if object_list %}
+                <div style="text-align:center;">
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover table-condensed">
+                        <col width="200">
+                        <col width="auto">
+                        <col width="100">
+                        <col width="100">
+                        <col width="150">
+                        <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Course Description</th>
+                            <th>Fees</th>
+                            <th>Approved</th>
+                            <th>Update</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for course in object_list %}
+                        <tr>
+                            <td> {{ course.course_name }} </td>
+                            <td> {{ course.course_bio | bleach }} </td>
+                            <td> {{ course.course_fees }} </td>
+                            <td> {% if not course.approved %} No {% else %} Yes {% endif %} </td>
+                            <td>
+                                <a href="{% url 'mentor_course_update' course.course_id %}"><i class="fa fa-pencil fa-pull-left"> </i> Edit</a> <br>
+                                <a href="{% url 'mentor_course_module' course.course_id %}"><i class="fa fa-list fa-pull-left"> </i> Modules</a> <br>
+                                <a href="{% url 'mentor_view_enrolled_users' course.course_id %}"><i class="fa fa-user fa-pull-left"> </i> Enrolled Users</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div><!--table-responsive-->
+                {% else %}
+                <div class="alert alert-danger" style="text-align: center">
+                    You arent mentoring any courses yet. :( Please do add one.
+
+                </div><!--alert alert-success-->
+                <div style="text-align:center">
+                    <i class="fa fa-thumbs-down fa-4x" style="font-size:300px;"></i>
+                </div>
+                {% endif%}
+                <p style="text-align:center">
+                    <a href="{% url 'mentor_addcourse' %}" class="btn btn-primary" role="button"><i class="fa fa-plus"></i> Add new course </a>
+                </p>
+            </div><!--row-->
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

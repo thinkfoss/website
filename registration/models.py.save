@@ -1,0 +1,193 @@
+from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.utils.translation import ugettext_lazy as _
+from django.core.validators import RegexValidator, MaxValueValidator, MinValueValidator
+
+# Create your models here.
+GENDER = (('M', _('Male')), ('F', _('Female')))
+
+
+class MyUserManager(BaseUserManager):
+    def create_user(self, email, password=None):
+        """
+        Creates and saves a User with the given email, email and password.
+        """
+        if not email:raise ValueError('Users must have an email address')
+        user = self.model(email=self.normalize_email(email))
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password):
+        """
+        Creates and saves a superuser with the given email, username and password.
+        """
+        user = self.create_user(email, password=password)
+        user.is_admin = True
+        user.save(using=self._db)
+        return user
+
+class User(AbstractBaseUser):
+    """
+    Extends the default User profiles of Django. The fields of this model can be obtained by the
+    user.get_profile method and it's extended by the django-profile application.
+    """
+    user_id = models.AutoField(primary_key=True)
+    user_first_name = models.CharField(_('First Name'), max_length=32, blank=True, null=True,
+                                  validators=[RegexValidator(regex='^[A-Za-z]*$')])
+    user_last_name = models.CharField(_('Last Name'), max_length=32, blank=True, null=True,
+                                    validators=[RegexValidator(regex='^[A-Za-z]*$')])
+    email = models.EmailField(_('Email'), db_index=True, unique=True)
+    user_dob = models.DateField(_('Birth Date'), blank=True, null=True)
+    user_gender = models.CharField(_('Gender'), max_length=1, choices=GENDER, blank=True, null=True)
+    user_github = models.CharField(_('Github Profile'),max_length=100, db_index=True, unique=True, null=False)
+    user_linkedin = models.CharField(_('Linkedin Profile'),max_length=100, db_index=True, unique=True, null=False)
+    user_bio = models.CharField(_('Short Bio'), max_length=1000, blank=True, null=True)
+    user_occupation = models.CharField(_('Occupation'), max_length=100, blank=True, null=True)
+    user_nationality = models.CharField(_('Nationality'), max_length=100, blank=True, null=True)
+    approved = models.BooleanField(_('Approved'), default=False)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+
+    objects = MyUserManager()
+
+    USERNAME_FIELD = 'email'
+
+    def get_first_name(self):
+        return (self.user_first_name)
+
+    def __str__(self):
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
+    def get_user_id(self):
+        return self.user_id
+
+    @property
+    def is_staff(self):
+        return self.is_admin
+
+
+class Course(models.Model):
+    """
+    Doctor model
+    """
+    course_id = models.AutoField(primary_key=True)
+    course_name = models.CharField(_('Course Name'), max_length=100, blank=False, unique=True)
+    course_bio = models.CharField(_('Course Description'), max_length=1000, blank=True, null=True)
+    course_language = models.CharField(_('Course Language'), max_length=100, blank=False, unique=False)
+    course_difficulty = models.CharField(_('Course Difficulty'), max_length=100, blank=False, unique=False)
+    course_fees = models.IntegerField(_('Course Fees'),
+                                  validators=[MaxValueValidator(99999),MinValueValidator(0)],
+                                  help_text=_('5 digits maximum'), blank=True, null=True)
+    course_created = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+    course_user = models.ForeignKey(User, blank=False, null=False)
+
+    def get_mentor(self):
+        return self.course_user
+
+
+class CourseEnrollment(models.Model):
+    checkout_id = models.AutoField(primary_key=True)
+    course = models.ForeignKey(Course, blank=False, null=False)
+    user = models.ForeignKey(User, blank=False, null=False)
+    enrollment_time = models.DateTimeField(auto_now_add=True)
+    course_enrolled = models.BooleanField(default=False)
+
+
+class CourseModules(models.Model):
+    course = models.ForeignKey(Course, blank=False, null=False)
+    module_id = models.AutoField(primary_key=True)
+    module_name = models.CharField(_('Module Name'), max_length=100, blank=False, unique=True)
+    module_description = models.CharField(_('Module Description'), max_length=1000, blank=True, null=True)
+    module_duration = models.IntegerField(_('Duration of module'),
+                                  validators=[MaxValueValidator(100),MinValueValidator(0)],
+course_module_fields                                  help_text=_('3 digits maximum'), blank=True, null=True)
+    
+
+class DoctorManager(models.Manager):
+    def create_doctor(self, id):
+        doctor = self.create(doctor_id=id)
+        return doctor
+
+
+class Doctor(models.Model):
+    """
+    Doctor model
+    """
+    doctor_id = models.AutoField(primary_key=True)
+    doctor_name = models.CharField(_('Doctor Name'), max_length=100, blank=False, unique=True)
+    doctor_contact = models.CharField( _('Doctor Contact No'), max_length=15, blank=True, null=True)
+    doctor_booking_fees = models.IntegerField(_('Booking Fees'),
+                                  validators=[MaxValueValidator(99999),MinValueValidator(0)],
+                                  help_text=_('5 digits maximum'), blank=True, null=True)
+    doctor_qualification = models.CharField(_('Doctor Qualification'), max_length=100, blank=True, null=True)
+    doctor_specialization = models.CharField(_('Doctor specialization'), max_length=100, blank=True, null=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    qualified = models.BooleanField(default=True)
+    doctor_clinic = models.ForeignKey(User, blank=False, null=False)
+
+    objects = DoctorManager()
+
+    def get_clinic(self):
+        return self.doctor_clinic
+
+    def get_clinic_name(self):
+        return self.doctor_clinic.clinic_name
+
+    def get_clinic_city(self):
+        return self.doctor_clinic.city
+
+    def get_clinic_id(self):
+        return self.doctor_clinic.clinic_id
+
+    def get_booking_fees(self):
+        return self.doctor_booking_fees
+
+
+DOCTOR_AVAIL_CHOICES = (
+('MON-FRI', _('MON-FRI')),
+('SAT-SUN', _('SAT-SUN')),
+('MON', _('MON')),
+('TUE', _('TUE')),
+('WED', _('WED')),
+('THU', _('THU')),
+('FRI', _('FRI')),
+('SAT', _('SAT')),
+('SUN', _('SUN')),
+)
+
+DOCTOR_AVAIL_TIME = (
+('09:00 AM - 12:30 PM', _('09:00 AM - 12:30 PM')),
+('01:00 PM - 03:30 PM', _('01:00 PM - 03:30 PM')),
+('04:00 PM - 06:00 PM', _('04:00 PM - 06:00 PM')),
+('06:00 PM - 09:00 PM', _('06:00 PM - 09:00 PM')),
+('09:00 PM - 09:00 AM', _('09:00 PM - 09:00 AM')),
+)
+
+
+
+class DoctorAvailablity(models.Model):
+    avail_id = models.AutoField(primary_key=True)
+    doctor = models.ForeignKey(Doctor, blank=False, null=False)
+    availability_slot = models.CharField(_('Slot'), choices=DOCTOR_AVAIL_CHOICES, max_length=50, blank=False, null=False)
+    availability_time = models.CharField(_('Time'), choices=DOCTOR_AVAIL_TIME, max_length=50,blank=False, null=False)
+
+    def get_doctor(self):
+        return self.doctor
+
+    def get_clinic(self):
+        return self.doctor.doctor_clinic
+
+    def get_availability_slot(self):
+        return self.availability_slot
+
+    def get_availability_time(self):
+        return self.availability_time

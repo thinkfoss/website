@@ -1,0 +1,81 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% block body %}
+{% load bleach_tags %}
+<div class="container">
+  <h2 style="text-align:center">{{ user.user_first_name }} {{ user.user_last_name }} </h2>
+    <br>
+    <div class="well well-lg">
+        <div class="row">
+            <div class="col-sm-6 col-md-4" style="font-size: 70px; padding-left: 10%">
+          <span class="fa-stack fa-lg">
+          <i class="fa fa-circle  fa-stack-2x"></i>
+          <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+        </span>
+            </div> <!-- col-sm-6 -->
+            <div class="col-sm-6 col-md-8">
+                <h3>
+                    {{ user.email }} </h3>
+                <br />
+                <p>
+                  <i class="fa fa-birthday-cake"></i> {{ user.user_dob }}
+                  <br />
+                  <i class="fa fa-male"></i>
+                   {% if user.user_gender = 'M' %}
+                   Male
+                   {% else %}
+                   Female
+                   {% endif %}
+                  <br />
+                  <i class="fa fa-envelope"></i> <a href="{{ user.email }}" target="_blank">{{ user.email }} </a>
+                  <br />
+                  <i class="fa fa-github"></i> {{ user.user_github }}
+                  <br />
+                  <i class="fa fa-linkedin"></i> {{ user.user_linkedin }}
+                  <br />
+                  <i class="fa fa-globe"></i> {{ user.user_nationality }}
+                  <br />
+                  <i class="fa fa-book"></i> {{ user.user_bio }}
+                  <br />
+                </p>
+            </div> <!-- col-md-6 -->
+        </div> <!-- row -->
+    </div> <!-- well -->
+    <div class="container">
+          {% if courses_offered_bymentor %}
+          <h3 style="text-align:center">Other courses offered by {{ user.user_first_name }} {{ user.user_last_name }}</h3>
+          <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover table-condensed">
+            <col width="auto">
+            <col width="auto">
+            <col width="100">
+            <col width="100">
+            <col width="100">
+          <thead>
+              <tr>
+                  <th>Course Name</th>
+                  <th>Course Description</th>
+                  <th>Language</th>
+                  <th>Approved</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <tbody>
+          {% for course in courses_offered_bymentor %}
+          <tr>
+              <td> {{ course.course_name }} </td>
+              <td> {{ course.course_bio|bleach }} </td>
+              <td> {{ course.course_language }} </td>
+              <td> {{ course.approved }} </td>
+              <td style="width: 140px"> <a href="{% url 'student_course_view' course.course_id course.course_name %}" target="_blank" ><i class="fa fa-eye fa-pull-left"> View</i></a>
+              </td>
+          </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+<!--//contact-->
+{% endblock body %}

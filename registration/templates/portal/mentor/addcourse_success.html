@@ -1,0 +1,21 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% block body %}
+
+<div class="container-dash">
+    <div class="row">
+        {% block navbar_left %}
+        {% include 'static/navbar_left.html' %}
+        {% endblock navbar_left %}
+    <div class="col-md-10" style="padding-top:5%;">
+    <h2 style="text-align: center">You have added a new course!</h2> <br>
+
+    <div class="row">
+        <div class="alert alert-success" style="text-align: center">
+            Your have succesfully added a new course. Please wait for confirmation from the admins
+        </div><!--alert alert-success-->
+    </div><!--row-->
+        </div>
+    </div>
+    </div>
+{% endblock body %}

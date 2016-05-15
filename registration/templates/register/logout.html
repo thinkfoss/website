@@ -1,0 +1,21 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% block body %}
+	<div class="container container-top" style="padding-top:5%;">
+    <div class="col col-md-6 col-md-offset-3">
+    <h2 style="text-align: center">Logged Out :(</h2> <br>
+    <div class="row">
+			<br><br>
+    <div class="alert alert-success" style="text-align:center" >
+    You have succesfully logged out from your account. Thank You!
+    </div><!--alert alert-success-->
+
+		<div id="contact_button_div" style="padding-top:50px; text-align:center">
+		<a href="http://www.thinkfoss.com#tf-contact"><button type="button" class="btn-new btn-white">Contact Us <i class="fa fa-paper-plane"></i></button></a>
+		<a href="http://blog.thinkfoss.com" target="_blank"><button type="button" class="btn-new btn-white">Blog <i class="fa fa-newspaper-o"></i></button></a>
+		</div>
+  </div>
+</div>
+</div>
+{% include 'static/login-model.html' %}
+{% endblock body %}

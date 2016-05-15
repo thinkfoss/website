@@ -1,0 +1,16 @@
+Django==1.8.4
+django-bootstrap-pagination==1.5.1
+django-bootstrap3-datetimepicker==2.2.3
+django-braces==1.8.1
+django-grappelli==2.7.1
+django-recaptcha==1.0.4
+lockfile==0.10.2
+Pillow==2.9.0
+python-memcached==1.57
+six==1.9.0
+wheel==0.24.0
+simplejson
+django-allauth
+django-mailgun
+django-mail-templated
+pycrypto

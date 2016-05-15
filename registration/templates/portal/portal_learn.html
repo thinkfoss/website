@@ -1,0 +1,66 @@
+{% extends "static/base.html" %}
+{% load staticfiles %}
+{% block body %}
+{% load bleach_tags %}
+
+<div class="container-dash">
+    <div class="row">
+        {% block navbar_left %}
+        {% include 'static/navbar_left.html' %}
+        {% endblock navbar_left %}
+        <div class="col-md-10">
+            <div class="row">
+                {% if object_list %}
+                {% for course in object_list %}
+                <div class="col-md-3" id="course_panel">
+                    {% if course.course_fees == 0 %}
+                        <div class="panel panel-info">
+                    {% else %}
+                        <div class="panel panel-default">
+                    {% endif %}
+                            <div class="panel-heading" style="text-align:center; height: 50px">
+                                <h3 class="panel-title">
+                                    {{ course.course_name|truncatechars:45 }}
+                                </h3>
+                            </div>
+                            <div class="panel-body" id="course-panel">
+                                {{ course.course_bio|truncatechars:180 | bleach }}
+                                <br>
+                            </div>
+                            <div class="panel-footer">
+                                <a href="{% url 'student_course_view' course.course_id course.course_name %}"
+                                class="btn btn-primary view_course_button" role="button"
+                                data-loading-text="Loading...">Learn <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                                <span style="float:right;">
+                                {% if course.course_fees == 0 %}
+                                <b>FREE</b>
+                                {% else %}
+                                <i class="fa fa-inr"></i> {{ course.course_fees }}
+                                {% endif %}
+                                <br>
+                                <span class="badge"><i class="fa fa-users"></i> {{ course.get_enrolled_users }}</span>
+                                </span>
+                            </div>
+                        </div>
+                            </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="alert alert-danger" style="text-align: center">
+                    No course available at this time. Try again later
+                </div><!--alert alert-success-->
+                {% endif %}
+            </div><!--row-->
+        </div>
+    </div>
+</div>
+<script>
+  $('.view_course_button').on('click', function () {
+			$(this).button('loading').delay(1000).queue(function() {
+			$(this).button('reset');
+			$(this).dequeue();
+		});
+  });
+</script>
+{% endblock body %}
