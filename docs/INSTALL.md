@@ -8,9 +8,9 @@ sudo apt-get install python-pip python-dev memcached
 sudo pip install virtualenvwrapper
 ```
 ## Get the files
-You can clone it directly from [https://bitbucket.org/tonythomas01/doctorkanu](https://bitbucket.org/tonythomas01/doctorkanu)
+You can clone it directly from [https://github.com/thinkfoss/website](https://github.com/thinkfoss/website)
 ```bash
-git clone git@bitbucket.org:tonythomas01/doctorkanu.git
+git clone https://github.com/thinkfoss/website
 ```
 ## Setup development environment
 First, some initialization steps. Most of this only needs to be done 
@@ -25,8 +25,8 @@ source /usr/local/bin/virtualenvwrapper.sh
 ```
 Lets create a virtual environment for our project
 ```bash
-mkvirtualenv doctorkanu
-workon doctorkanu
+mkvirtualenv thinkfoss
+workon thinkfoss
 ```
 ## Install requirements
 All the requirements are mentioned in the file `requirements.txt`.
@@ -37,14 +37,20 @@ pip install -r requirements.txt
 ## Setup database
 Setup tables in the DB
 ```bash
-python manage.py syncdb
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
 ```
 Collect all the static files for fast serving
 ```bash
 python manage.py collectstatic
 ```
+Copy test local_settings.py, and make configuration changes (if any)
+```bash
+mv docs/local-settings.py thinkfoss/local_settings.py
+```
+
 ## Run server
 ```bash
 python manage.py runserver
 ```
-
