@@ -17,4 +17,4 @@ see `docs/INSTALL.md`
 * Send in pull requetss 
 
 ## bug reporting 
-Please use `http://phab.thinkfoss.com/`
+Please use [http://phab.thinkfoss.com/](http://phab.thinkfoss.com/)
