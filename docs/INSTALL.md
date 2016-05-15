@@ -45,6 +45,11 @@ Collect all the static files for fast serving
 ```bash
 python manage.py collectstatic
 ```
+Copy test local_settings.py, and make configuration changes (if any)
+```bash
+mv docs/local-settings.py thinkfoss/local_settings.py
+```
+
 ## Run server
 ```bash
 python manage.py runserver
