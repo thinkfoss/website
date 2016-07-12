@@ -1,0 +1,76 @@
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+	<div class="modal-dialog" role="document"  style="width: 400px">
+    <div class="panel panel-default">
+            <div class="panel-heading">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="section-title" style="text-align: center">
+                    <h2><strong>Think<span style="color :orange">FOSS</span></strong></h2></div>
+            <p style="text-align: center"> < code | <strong>train</strong> | grow ></p>
+
+    </div>
+            <div class="panel-body">
+          	            <form role="form" action="{% url 'account_login' %}" method="POST">
+	            {% csrf_token %}
+	                <fieldset>
+	                    <div class="row">
+	                        <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+	                            <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+	                                <div class="input-group">
+	                                    <span class="input-group-addon">
+	                                        <i class="fa fa-user"></i>
+	                                    </span>
+	                                    <input class="form-control" placeholder="Username"  id="id_login" name="login" type="text" autofocus>
+	                                </div> <!-- input-group -->
+	                            </div> <!-- form-group -->
+	                            <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+	                                <div class="input-group">
+	                                    <span class="input-group-addon">
+	                                        <i class="fa fa-expeditedssl"></i>
+	                                    </span>
+	                                    <input class="form-control" placeholder="Password" name="password" type="password">
+	                                    <input type="hidden" name="next" value="{{ next }}" />
+	                                </div> <!-- input-group-addon -->
+	                            </div> <!-- input-group --> <br>
+	                            {% if form.errors %}
+	                            <div class="alert alert-danger">
+	                                <i class="fa fa-warning"></i> "Your username and password didn't match. Please try again."
+	                            </div> <!-- alert alert-danger -->
+	                            {% endif %}
+	                            <div class="form-group">
+	                                <button type="submit" class="btn btn-lg btn-primary btn-block" id="signinbutton" data-loading-text="Signing In...">Sign In <i class="fa fa-sign-in"></i></button>
+	                            </div> <!-- form-group -->
+	                        </div> <!-- col-sm-12 col-md-10 -->
+	                    </div> <!-- row -->
+	                </fieldset>
+	            </form>
+						<div style="text-align:center">
+						<a href="{% url 'password_reset' %}" style="color:black"> Forgot Password ?</a>
+					</div>
+            </div>
+            <div class="panel-footer">
+    				<p style="text-align: center;">
+            <a href="{% url 'register_user' %}"style="color:#2980b9"><button class="btn-new btn-white btn-nav"> Sign Up</button></a>
+            or login using
+
+            <a href="/accounts/google/login"> <button type='button' class='btn tf-btn' style="background-color:red"><i class="fa fa-google-plus fa-2x"></i> </button></a>
+            <a href="/accounts/github/login"> <button type='button'  class='btn tf-btn' style="background-color:black"><i class="fa fa-github fa-2x"></i> </button></a>
+    </p>
+
+            </div>
+
+            </div>
+
+	          </div>
+
+		</div>
+		</div>
+</div>
+
+<script>
+  $('#signinbutton').on('click', function () {
+			$(this).button('loading').delay(1000).queue(function() {
+			$(this).button('reset');
+			$(this).dequeue();
+		});
+  });
+</script>

@@ -1,0 +1,12 @@
+{% load staticfiles %}
+<ul class="nav nav-tabs">
+
+  <li role="presentation" class="{% if request.resolver_match.url_name == 'portal_mentoring' %}active{% endif %}"><a href={% url 'portal_mentoring' %}>My courses</a></li>
+  {% if request.resolver_match.url_name == 'mentor_course_update' or  request.resolver_match.url_name == 'course_add_module'  or  request.resolver_match.url_name == 'mentor_course_module' or  request.resolver_match.url_name == 'course_edit_module' %}
+    <li role="presentation" class="active"><a href="#">Edit</a></li>
+  {% endif %}
+  <li role="presentation" class="{% if request.resolver_match.url_name == 'mentor_addcourse' %}active{% endif %}"><a href="{% url 'mentor_addcourse' %}">Add new course</a></li>
+  {% if request.resolver_match.url_name == 'module_add_success' or request.resolver_match.url_name ==  'module_edit_success' or request.resolver_match.url_name == 'course_add_success' or  request.resolver_match.url_name == 'course_edit_success' %}
+      <li role="presentation" class="active"><a href="#">Miscellaneous</a></li>
+  {% endif %}
+</ul>

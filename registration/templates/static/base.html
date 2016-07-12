@@ -1,0 +1,98 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Page Needs
+================================================== -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ThinkFOSS - code | train | grow</title>
+    <meta name="msvalidate.01" content="AACA4869B9C746F7F151D39BF5D19CB2" />
+    <meta name="description" content=" ThinkFOSS aims at providing Open Source training and solutions to Individuals, Schools, Universities and Industries in need. ThinkFOSS is a collection of Open Source enthusiasts and entrepreneurs who are ready to spend their time spreading FOSS technologies">
+    <meta name="keywords" content="thinkfoss, fossatamrita, training, open source, open source solutions">
+    <meta name="author" content="thinkfoss.com">
+
+    <!-- Favicons
+================================================== -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/apple-touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/apple-touch-icon-114x114.png' %}">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+
+    <!-- Slider
+================================================== -->
+    <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/owl.theme.css' %}" rel="stylesheet" media="screen">
+
+    <!-- Stylesheet
+================================================== -->
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/style.css' %}">
+    <link rel="stylesheet"  href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+
+
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script type="text/javascript"  src="{% static 'js/jquery-ui.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/modernizr.custom.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.isotope.js' %}"></script>
+
+    <script  src="{% static 'js/owl.carousel.js' %}"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-66359518-1', 'auto');
+                ga('send', 'pageview');
+
+        </script>
+    <!--&lt;!&ndash;Start of HappyFox Live Chat Script&ndash;&gt;-->
+    <!--<script>-->
+    <!--window.HFCHAT_CONFIG = {-->
+    <!--EMBED_TOKEN: "363493e0-b0b6-11e5-8c58-67a40465a54d",-->
+    <!--ACCESS_TOKEN: "4d175ad1b3b04022a0d38244044ca8a9",-->
+    <!--HOST_URL: "https://happyfoxchat.com",-->
+    <!--ASSETS_URL: "https://d1l7z5ofrj6ab8.cloudfront.net/visitor"-->
+    <!--};-->
+
+    <!--(function() {-->
+    <!--var scriptTag = document.createElement('script');-->
+    <!--scriptTag.type = 'text/javascript';-->
+    <!--scriptTag.async = true;-->
+    <!--scriptTag.src = window.HFCHAT_CONFIG.ASSETS_URL + '/js/widget-loader.js';-->
+
+    <!--var s = document.getElementsByTagName('script')[0];-->
+    <!--s.parentNode.insertBefore(scriptTag, s);-->
+    <!--})();-->
+    <!--</script>-->
+    <!--&lt;!&ndash;End of HappyFox Live Chat Script&ndash;&gt;-->
+
+</head>
+<body>
+<div class="page-wrap">
+    {% block navbar %}
+    {% include 'static/navbar-fixed_top.html' %}
+    {% endblock navbar %}
+    {% block body %}
+
+    {% endblock body %}
+</div>
+{% include 'static/fixed_footer.html' %}
+</body>
+</html>

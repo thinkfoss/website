@@ -1,0 +1,13 @@
+<div class="col-md-2">
+    <div class="list-group">
+        <a href="{% url 'portal' %}" class="list-group-item {% if request.resolver_match.url_name == 'portal' %}active{% endif %}">
+            All Courses
+        </a>
+        <a href="{% url 'student_enrolled_view' %}" class="list-group-item {% if request.resolver_match.url_name == 'student_enrolled_view' %}active{% endif %}">
+            My Enrollments <span class="badge">{{enrolled_courses}}</span> </a>
+        <a href="{% url 'portal_mentoring' %}" class="list-group-item {% if request.resolver_match.url_name == 'portal_mentoring' or request.resolver_match.url_name == 'mentor_addcourse' %}active{% endif %}">
+            My Mentoring</a>
+        <a href="{% url 'cart_view' %}" class="list-group-item {% if request.resolver_match.url_name == 'cart_view' %}active{% endif %}" > My Cart <span class="badge">{{ in_cart_items }}</span></a>
+        <a href="{% url 'user_profile' %}" class="list-group-item {% if request.resolver_match.url_name == 'user_profile' %}active{% endif %}">My Profile</a>
+    </div>
+</div>

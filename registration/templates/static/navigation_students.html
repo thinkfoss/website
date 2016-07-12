@@ -1,0 +1,10 @@
+{% load staticfiles %}
+<ul class="nav nav-tabs">
+  <li role="presentation" class="{% if request.resolver_match.url_name == 'student_view' %}active{% endif %}"><a href={% url 'student_view' %}>All Courses</a></li>
+  {% if request.resolver_match.url_name == 'student_course_view' %}
+  <li role="presentation" class="active"><a href="#">Details</a></li>
+  {% endif %}
+  <li role="presentation" class="{% if request.resolver_match.url_name == 'student_enrolled_view' %}active{% endif %}"><a href="{% url 'student_enrolled_view' %}">Enrolled Courses</a></li>
+  <li role="presentation" class="{% if request.resolver_match.url_name == 'cart_view' %}active{% endif %}"><a href="{% url 'cart_view' %}">My cart</a></li>
+
+</ul>

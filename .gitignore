@@ -1,4 +1,3 @@
-static/
 ./db.sqlite3
 ./.idea/
 *.sqlite3
