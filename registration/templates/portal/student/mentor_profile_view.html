@@ -21,11 +21,11 @@
                   <i class="fa fa-birthday-cake"></i> {{ user.user_dob }}
                   <br />
                   <i class="fa fa-male"></i>
-                   {% if user.user_gender = 'M' %}
-                   Male
-                   {% else %}
-                   Female
-                   {% endif %}
+                  {% if user.user_gender = 'M' %}
+                  Male
+                  {% elif user.user_gender = 'F' %}
+                  Female
+                  {% endif %}
                   <br />
                   <i class="fa fa-envelope"></i> <a href="{{ user.email }}" target="_blank">{{ user.email }} </a>
                   <br />
