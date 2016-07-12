@@ -14,3 +14,4 @@ django-allauth
 django-mailgun
 django-mail-templated
 pycrypto
+django-ckeditor
