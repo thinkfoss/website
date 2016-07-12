@@ -2,7 +2,7 @@
 Its super easy to set up our development environment
 
 ## Collect Pre-requisites
-Install `python-pip`, `python-dev` and `virtualenvwrapper` 
+Install `python-pip`, `python-dev` and `virtualenvwrapper`
 ```bash
 sudo apt-get install python-pip python-dev memcached
 sudo pip install virtualenvwrapper
@@ -13,10 +13,10 @@ You can clone it directly from [https://github.com/thinkfoss/website](https://gi
 git clone https://github.com/thinkfoss/website
 ```
 ## Setup development environment
-First, some initialization steps. Most of this only needs to be done 
-one time. You will want to add the command to source 
-`/usr/local/bin/virtualenvwrapper.sh` to your shell startup file 
-(`.bashrc` or `.zshrc`) changing the path to `virtualenvwrapper.sh` 
+First, some initialization steps. Most of this only needs to be done
+one time. You will want to add the command to source
+`/usr/local/bin/virtualenvwrapper.sh` to your shell startup file
+(`.bashrc` or `.zshrc`) changing the path to `virtualenvwrapper.sh`
 depending on where it was installed by `pip`.
 ```bash
 export WORKON_HOME=~/Envs
@@ -33,7 +33,13 @@ All the requirements are mentioned in the file `requirements.txt`.
 ```bash
 pip install -r requirements.txt
 ```
-
+## Install instamojo
+To may also need to install Instamojo
+```bash
+git clone https://github.com/Instamojo/instamojo-py.git
+cd instamojo-py
+python setup.py install
+```
 ## Setup database
 Setup tables in the DB
 ```bash
