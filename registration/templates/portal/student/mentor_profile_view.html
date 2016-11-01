@@ -27,11 +27,11 @@
                   Female
                   {% endif %}
                   <br />
-                  <i class="fa fa-envelope"></i> <a href="{{ user.email }}" target="_blank">{{ user.email }} </a>
+                  <i class="fa fa-envelope"></i> <a href="mailto:{{ user.email }}" target="_blank">{{ user.email }} </a>
                   <br />
-                  <i class="fa fa-github"></i> {{ user.user_github }}
+                  <i class="fa fa-github"></i> <a href="{{ user.user_github }}" target="_blank">{{ user.user_github }}</a>
                   <br />
-                  <i class="fa fa-linkedin"></i> {{ user.user_linkedin }}
+                  <i class="fa fa-linkedin"></i> <a href="{{ user.user_linkedin }}" target="_blank">{{ user.user_linkedin }}</a>
                   <br />
                   <i class="fa fa-globe"></i> {{ user.user_nationality }}
                   <br />
