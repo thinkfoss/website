@@ -17,4 +17,10 @@ see `docs/INSTALL.md`
 * Send in pull requetss 
 
 ## bug reporting 
+If there is something wrong with the content on that web site,
+feel free to
+[file an issue with this repository](https://github.com/thinkfoss/website/issues),
+or formulate a pull request.
+Note that most pages will come with an edit link in the bottom right corner.
+
 Please use [http://phab.thinkfoss.com/](http://phab.thinkfoss.com/)
