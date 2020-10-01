@@ -12,7 +12,7 @@ see `docs/INSTALL.md`
 
 
 ## contributing 
-* Create a fork of the repository 
+* Fork this repository
 * Hack around 
 * Send in pull requetss 
 
