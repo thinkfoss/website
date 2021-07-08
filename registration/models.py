@@ -37,7 +37,7 @@ class User(AbstractBaseUser):
     user_first_name = models.CharField(_('First Name'), max_length=32, blank=True, null=True,
                                   validators=[RegexValidator(regex='^[A-Za-z]*$')])
     user_last_name = models.CharField(_('Last Name'), max_length=32, blank=True, null=True,
-                                    validators=[RegexValidator(regex='^[A-Za-z]*$')])
+                                    validators=[RegexValidator(regex='^[A-Za-z0-9\ ]*$')])
     email = models.EmailField(_('Email'), db_index=True, unique=True)
     user_dob = models.DateField(_('Birth Date'), blank=True, null=True)
     user_gender = models.CharField(_('Gender'), max_length=1, choices=GENDER, blank=True, null=True)
